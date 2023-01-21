@@ -1,29 +1,17 @@
-const stockRopa = [
-    {id: 1, nombre: 'Remera Mezcla', tipo: 'Remera', talle: 1, precio: 1000, img: "remeraMezcla.webp" },
-    {id: 2, nombre: 'Remera Port', tipo: 'Remera', talle: 2 , precio: 800, img: "remeraPort.webp"},
-    {id: 3, nombre: 'Remera Satelital',tipo: 'Remera',  talle: 2, precio: 1500, img: "remeraSatelital.webp"},
-    {id: 4, nombre: 'Remera Senderos',tipo: 'Remera',  talle: 3 , precio: 1200, img: "remeraSenderos.webp"},
-    {id: 5, nombre: 'Top Arrecife', tipo: 'Remera Top', talle: 2, precio: 2000, img: "topArrecife.webp"},
-    {id: 6, nombre: 'Jean Oscuro',tipo: 'Denim Jean',  talle: 2, precio: 1750, img: "jeanoscuro.webp"},
-    {id: 7, nombre: 'Pantalón Uno',tipo: 'Denim Jean',  talle: 1, precio: 2000, img: "pantalonuno.webp"},
-    {id: 8, nombre: 'Pantalón Tres', tipo: 'Denim Jean', talle: 1, precio: 550, img: "pantalonTres.webp"},
-    {id: 9, nombre: 'Vestido Napo', tipo: 'Vestido', talle: 1, precio: 1550, img: "vestidoNapo.webp"},
-    {id: 10, nombre: 'Vestido Carpaccio',tipo: 'Vestido',  talle: 2, precio: 1850, img: "vestidoCarpaccio.webp"},
-    {id: 11, nombre: 'Pollera Galup',tipo: 'Pollera',  talle: 1, precio: 4500, img: "polleraGalupe.webp"},
-    {id: 12, nombre: 'Pollera Pop',tipo: 'Pollera',  talle: 5, precio: 1500, img: "polleraPop.webp"},
-    {id: 13, nombre: 'Pollera Ciao', tipo: 'Pollera', talle: 5, precio: 4000, img: "polleraCiao.webp"},
-];
-
+const contenedor = document.querySelector('#contenedor')
+fetch('data.json')
+.then(response => response.json())
+.then(
+    (data) => { 
 let carrito = localStorage.getItem("storageCarrito") ? JSON.parse(localStorage.getItem("storageCarrito")) : []
 let iconoCarrito = document.getElementById("carritoContenedor");
 let listaCarrito = document.getElementById("listaCarrito")
 let totalCarrito = 0;
 iconoCarrito.innerHTML=carrito.length;
 
-const contenedor = document.querySelector('#contenedor')
-stockRopa.forEach((prendas) => {
+data.forEach((prendas) => {
     //console.log(prendas);
-    const {id, nombre, tipo,talle, precio, img} = prendas
+    const {id, nombre, tipo, precio, img} = prendas
     //console.log(nombre);
     contenedor.innerHTML += `
     <div class="col">
@@ -46,7 +34,7 @@ let botones = document.querySelectorAll(".agregar");
 //console.log(botones);
 botones.forEach((boton) => {
     boton.addEventListener("click",() => {
-        const item = stockRopa.find((prendas) => prendas.id === parseInt(boton.dataset.id))
+        const item = data.find((prendas) => prendas.id === parseInt(boton.dataset.id))
         //console.log(item)
         //console.log(boton.dataset.id)
         carrito.push(item);
@@ -54,14 +42,36 @@ botones.forEach((boton) => {
 
         iconoCarrito.innerHTML= carrito.length;
         localStorage.setItem("storageCarrito", JSON.stringify(carrito))
-    })
+
+        let timerInterval
+            Swal.fire({
+                title: 'Producto agregado al carrito',
+                timer: 500,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                    b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+                }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+                })
+                    })
 });
 
 iconoCarrito.addEventListener("click", () => {
     listaCarrito.innerHTML="";
     carrito.forEach((prenda) => {
         //console.log(prendas);
-        const { id, nombre, talle, precio, img } = prenda
+        const { id, nombre, precio, img } = prenda
         //console.log(nombre);
         listaCarrito.innerHTML += `
         <li>
@@ -89,10 +99,50 @@ iconoCarrito.addEventListener("click", () => {
             iconoCarrito.innerHTML=carrito.length;
 
         })
-    })
-    
+    }) 
 
 })
+
+let contacto = document.querySelector('#contacto')
+
+contacto.addEventListener('click', () => {
+    const { value: email } = Swal.fire({
+  title: 'Escribe su Email y nos contactaremos con vos',
+  input: 'email',
+  inputPlaceholder: 'Enter your email address'
+})
+
+if (email) {
+Swal.fire(`Entered email: ${email}`)
+}
+})
+
+
+const procesarCompra = document.querySelector('#procesarCompra')
+procesarCompra.addEventListener('click', () => {
+    if(carrito.length === 0){
+        swal.fire({
+            title: "¡Tu carrito esta vacio!",
+            text: "Selecciona un vino para seguir con la compra",
+            icon: "error",
+            confirmButtonText: "Aceptar",
+        })
+
+    } else{ 
+        const{value: email} = Swal.fire({
+            title: 'Gracias por su compra',   
+        })
+        
+    }
+})
+
+    }
+)
+//.catch((error) => {
+//    console.log(error)
+  //  contenedor.innerHTML="<h2 class='error'> Lo sentimos, algo salio mal. Intente nuevamente más tarde. </h2>"
+//})
+    
 
 // const botonModos = document.querySelector("#claro-oscuro")
 // const body = document.querySelector (".modo-claro")

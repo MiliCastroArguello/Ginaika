@@ -1,0 +1,15 @@
+[
+    {"id": 1, "nombre": "Remera Mezcla", "tipo": "Remera", "talle": 1, "precio": 1000, "img": "remeraMezcla.webp" },
+    {"id": 2, "nombre": "Remera Port", "tipo": "Remera", "talle": 2 , "precio": 800, "img": "remeraPort.webp"},
+    {"id": 3, "nombre": "Remera Satelital","tipo": "Remera",  "talle": 2, "precio": 1500, "img": "remeraSatelital.webp"},
+    {"id": 4, "nombre": "Remera Senderos","tipo": "Remera",  "talle": 3 , "precio": 1200, "img": "remeraSenderos.webp"},
+    {"id": 5, "nombre": "Top Arrecife", "tipo": "Remera Top", "talle": 2, "precio": 2000, "img": "topArrecife.webp"},
+    {"id": 6, "nombre": "Jean Oscuro","tipo": "Denim Jean",  "talle": 2, "precio": 1750, "img": "jeanoscuro.webp"},
+    {"id": 7, "nombre": "Pantalón Uno","tipo": "Denim Jean",  "talle": 1, "precio": 2000, "img": "pantalonuno.webp"},
+    {"id": 8, "nombre": "Pantalón Tres", "tipo": "Denim Jean", "talle": 1, "precio": 550, "img": "pantalonTres.webp"},
+    {"id": 9, "nombre": "Vestido Napo", "tipo": "Vestido", "talle": 1, "precio": 1550, "img": "vestidoNapo.webp"},
+    {"id": 10, "nombre": "Vestido Carpaccio","tipo": "Vestido",  "talle": 2, "precio": 1850, "img": "vestidoCarpaccio.webp"},
+    {"id": 11, "nombre": "Pollera Galup","tipo": "Pollera",  "talle": 1, "precio": 4500, "img": "polleraGalupe.webp"},
+    {"id": 12, "nombre": "Pollera Pop","tipo": "Pollera",  "talle": 5, "precio": 1500, "img": "polleraPop.webp"},
+    {"id": 13, "nombre": "Pollera Ciao", "tipo": "Pollera", "talle": 5, "precio": 4000, "img": "polleraCiao.webp"}
+]
