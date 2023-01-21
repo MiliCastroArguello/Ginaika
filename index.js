@@ -129,8 +129,8 @@ procesarCompra.addEventListener('click', () => {
         })
 
     } else{ 
-        const{value: email} = Swal.fire({
-            title: 'Gracias por su compra',   
+        const { value: email } = Swal.fire({
+            title: 'Gracias por comprar en Ginaika',   
         })
         
     }
@@ -138,10 +138,10 @@ procesarCompra.addEventListener('click', () => {
 
     }
 )
-//.catch((error) => {
-//    console.log(error)
-  //  contenedor.innerHTML="<h2 class='error'> Lo sentimos, algo salio mal. Intente nuevamente más tarde. </h2>"
-//})
+.catch((error) => {
+    console.log(error)
+    contenedor.innerHTML="<h2 class='error'> Lo sentimos, algo salio mal. Intente nuevamente más tarde. </h2>"
+})
     
 
 // const botonModos = document.querySelector("#claro-oscuro")
