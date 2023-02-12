@@ -22,7 +22,9 @@ iconoCarrito.innerHTML=carrito.length;
 
 const contenedor = document.querySelector('#contenedor')
 stockRopa.forEach((prendas) => {
+    //console.log(prendas);
     const {id, nombre, tipo,talle, precio, img} = prendas
+    //console.log(nombre);
     contenedor.innerHTML += `
     <div class="col">
     <div class="card" style="width: 18rem;">
@@ -41,11 +43,13 @@ stockRopa.forEach((prendas) => {
 
 let botones = document.querySelectorAll(".agregar");
 
+//console.log(botones);
 botones.forEach((boton) => {
     boton.addEventListener("click",() => {
         const item = stockRopa.find((prendas) => prendas.id === parseInt(boton.dataset.id))
     
         carrito.push(item);
+        //console.log(carrito);
 
         iconoCarrito.innerHTML= carrito.length;
         localStorage.setItem("storageCarrito", JSON.stringify(carrito))
@@ -57,6 +61,7 @@ iconoCarrito.addEventListener("click", () => {
     carrito.forEach((prenda) => {
         //console.log(prendas);
         const { id, nombre, talle, precio, img } = prenda
+        //console.log(nombre);
         listaCarrito.innerHTML += `
         <li>
       <img class="img-carrito" src="multimedia/${img}" alt="imagen de prendas">
@@ -87,6 +92,7 @@ iconoCarrito.addEventListener("click", () => {
     
 
 })
+
 
 
 
